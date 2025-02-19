@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ecotracker - Monitor Your Carbon Footprint</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="brand-header">
+        <div class="brand-container">
+            <a href="/" class="brand-logo">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="eco">
+                    <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                    <path d="M2 17l10 5 10-5"></path>
+                    <path d="M2 12l10 5 10-5"></path>
+                </svg>
+                <span>ecotracker</span>
+            </a>
+            <nav class="brand-nav">
+                <a href="#activities">Activities</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="hero">
+        <div class="hero-content">
+            <h1>Take Action Against Climate Change</h1>
+            <p>Every small action counts in the fight against climate change. By tracking your carbon footprint, you're taking the first step towards a more sustainable future.</p>
+            <div class="impact-stats">
+                <div class="stat">
+                    <span class="stat-value">7.7</span>
+                    <span class="stat-label">Tons CO₂ per capita globally</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-value">2.0°C</span>
+                    <span class="stat-label">Target max temperature rise</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-value">45%</span>
+                    <span class="stat-label">Required emissions reduction by 2030</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="info-section">
+            <div class="info-card">
+                <h2>Why Track Your Carbon Footprint?</h2>
+                <p>Your carbon footprint is the total amount of greenhouse gases produced by your daily activities. Understanding and tracking these emissions is the first step toward reducing them.</p>
+            </div>
+            <div class="info-card">
+                <h2>How It Works</h2>
+                <p>1. Log your daily activities across different categories</p>
+                <p>2. View your total emissions and identify high-impact areas</p>
+                <p>3. Make informed decisions to reduce your environmental impact</p>
+            </div>
+            <div class="info-card">
+                <h2>Tips for Reduction</h2>
+                <p>• Use public transportation or bike when possible</p>
+                <p>• Reduce meat consumption and food waste</p>
+                <p>• Choose energy-efficient appliances</p>
+                <p>• Support sustainable products and services</p>
+            </div>
+        </div>
+
+        <div class="dashboard">
+            <div class="total-emissions">
+                <h2>Total CO₂ Emissions</h2>
+                <p class="emissions-value">0 kg</p>
+                <div class="emissions-chart">
+                    <canvas id="emissionsChart"></canvas>
+                </div>
+            </div>
+
+            <div class="activity-summary">
+                <h2>Emissions Summary</h2>
+                <div class="summary-cards">
+                    <div class="summary-card" id="transport-summary">
+                        <h3>Transport</h3>
+                        <p class="summary-value">0 kg</p>
+                    </div>
+                    <div class="summary-card" id="household-summary">
+                        <h3>Household</h3>
+                        <p class="summary-value">0 kg</p>
+                    </div>
+                    <div class="summary-card" id="food-summary">
+                        <h3>Food & Diet</h3>
+                        <p class="summary-value">0 kg</p>
+                    </div>
+                    <div class="summary-card" id="shopping-summary">
+                        <h3>Shopping</h3>
+                        <p class="summary-value">0 kg</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="activity-list">
+            <h2>Recent Activities</h2>
+            <div id="activities"></div>
+        </div>
+
+        <div class="add-activity">
+            <h2>Add New Activity</h2>
+            <form id="activity-form">
+                <div class="form-group">
+                    <label for="category">Category</label>
+                    <select id="category" required>
+                        <option value="">Select a category</option>
+                        <option value="transport">Transport</option>
+                        <option value="household">Household</option>
+                        <option value="food">Food & Diet</option>
+                        <option value="shopping">Shopping</option>
+                    </select>
+                </div>
+
+                <div class="form-group" id="transport-options" style="display: none;">
+                    <label for="transport-type">Transport Type</label>
+                    <select id="transport-type">
+                        <option value="car">Car</option>
+                        <option value="bus">Bus</option>
+                        <option value="train">Train</option>
+                        <option value="plane">Plane</option>
+                    </select>
+                    <label for="transport-distance">Distance (km)</label>
+                    <input type="number" id="transport-distance" min="0" step="0.1">
+                </div>
+
+                <div class="form-group" id="household-options" style="display: none;">
+                    <label for="energy-type">Energy Type</label>
+                    <select id="energy-type">
+                        <option value="electricity">Electricity</option>
+                        <option value="gas">Natural Gas</option>
+                        <option value="water">Water</option>
+                    </select>
+                    <label for="energy-amount">Amount (kWh)</label>
+                    <input type="number" id="energy-amount" min="0" step="0.1">
+                </div>
+
+                <div class="form-group" id="food-options" style="display: none;">
+                    <label for="food-type">Food Type</label>
+                    <select id="food-type">
+                        <option value="meat">Meat</option>
+                        <option value="dairy">Dairy</option>
+                        <option value="vegetables">Vegetables</option>
+                        <option value="processed">Processed Foods</option>
+                    </select>
+                    <label for="food-amount">Amount (kg)</label>
+                    <input type="number" id="food-amount" min="0" step="0.1">
+                </div>
+
+                <div class="form-group" id="shopping-options" style="display: none;">
+                    <label for="item-type">Item Type</label>
+                    <select id="item-type">
+                        <option value="clothing">Clothing</option>
+                        <option value="electronics">Electronics</option>
+                        <option value="furniture">Furniture</option>
+                    </select>
+                    <label for="item-amount">Amount ($)</label>
+                    <input type="number" id="item-amount" min="0" step="0.1">
+                </div>
+
+                <button type="submit">Add Activity</button>
+            </form>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
